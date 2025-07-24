@@ -1,22 +1,18 @@
-FROM node as builder
+FROM node AS builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY . .
 
 RUN npm install
-
-COPY . ./
 
 RUN npm run build
 
 
-FROM alpine/node
+FROM nginx:alpine
 
-WORKDIR /app
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-COPY --from=builder /dist /
+EXPOSE 80
 
-ENV VITE_BASE_API_URL=http://localhost:5000
-
-ENTRYPOINT [ "node ./" ]
+CMD [ "nginx", "-g", "daemon off;" ]
