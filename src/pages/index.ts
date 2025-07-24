@@ -1,0 +1,1 @@
+export { NftPage } from './nft-page/nft-page'
