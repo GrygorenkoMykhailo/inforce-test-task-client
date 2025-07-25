@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: dockerhubuser105/invoice-test-task
+  pullPolicy: IfNotPresent
+  tag: latest
+
+reactClient:
+  image: docker.io/dockerhubuser105/invoice-test-task
+  imageTag: react-client
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: client.domain
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
