@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: client-ingress
+  name: {{ .Values.nameOverride }}
   annotations:
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
@@ -19,7 +19,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: react-client
+                name: {{ $.Values.nameOverride }}
                 port:
                   number: {{ $.Values.reactClient.port }}
           {{- end }}

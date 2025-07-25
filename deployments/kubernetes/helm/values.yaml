@@ -1,5 +1,7 @@
 replicaCount: 1
 
+nameOverride: react-rarible-client
+
 image:
   repository: dockerhubuser105/invoice-test-task
   pullPolicy: IfNotPresent

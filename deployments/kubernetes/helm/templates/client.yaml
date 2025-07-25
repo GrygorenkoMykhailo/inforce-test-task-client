@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-client
+  name: {{ .Values.nameOverride }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: react-client
+      app: {{ .Values.nameOverride }}
   template:
     metadata:
       labels:
-        app: react-client
+        app: {{ .Values.nameOverride }}
     spec:
       containers:
-        - name: react-client
+        - name: {{ .Values.nameOverride }}
           imagePullPolicy: Always
           image: "{{ .Values.reactClient.image }}:{{ .Values.reactClient.imageTag }}"
           ports:
